@@ -232,6 +232,7 @@ body{
     margin: 4%;
     background-color: green;
     border-radius: 100px;
+    opacity: 0;
 }
 
 .dice-dot.right{
