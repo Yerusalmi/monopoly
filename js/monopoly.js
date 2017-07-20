@@ -1,6 +1,6 @@
 var Monopoly = {};
 Monopoly.allowRoll = true;
-Monopoly.moneyAtStart = 0;
+Monopoly.moneyAtStart = 700;
 Monopoly.doubleCounter = 0;
 
 Monopoly.init = function(){
@@ -62,24 +62,66 @@ Monopoly.brokePerson = function() {
         $(".player.current-turn").addClass('dead');
         jQuery('.property.'+player).addClass('available').removeClass(player).attr('data-owner','').attr('data-rent','')
         Monopoly.setNextPlayerTurn();     
+};
+
+Monopoly.diceRollingAnim = function(){
+        var rolling1 = Math.floor(Math.random() * 6) + 1 ;
+        var rolling2 = Math.floor(Math.random() * 6) + 1 ;
+        var rolling21 = Math.floor(Math.random() * 6) + 1 ;
+        var rolling22 = Math.floor(Math.random() * 6) + 1 ;
+
+    setTimeout(function(){     
+        $(".dice#dice1").attr("data-num",rolling1).find(".dice-dot.num" + rolling1).css("opacity",1);
+        $(".dice#dice2").attr("data-num",rolling2).find(".dice-dot.num" + rolling2).css("opacity",1);
+ }, 400);
+    setTimeout(function(){     
+        $(".dice#dice1").attr("data-num",rolling1).find(".dice-dot.num" + rolling1).css("opacity",0);
+        $(".dice#dice2").attr("data-num",rolling2).find(".dice-dot.num" + rolling2).css("opacity",0);
+ }, 600);
+
+
+    setTimeout(function(){ 
+        $(".dice#dice1").attr("data-num",rolling21).find(".dice-dot.num" + rolling21).css("opacity",1);
+        $(".dice#dice2").attr("data-num",rolling22).find(".dice-dot.num" + rolling22).css("opacity",1);
+ }, 800);
+    setTimeout(function(){  
+        $(".dice#dice1").attr("data-num",rolling21).find(".dice-dot.num" + rolling21).css("opacity",0);
+        $(".dice#dice2").attr("data-num",rolling22).find(".dice-dot.num" + rolling22).css("opacity",0);
+ }, 1000);
+
+
+    setTimeout(function(){ 
+        $(".dice#dice1").attr("data-num",rolling21).find(".dice-dot.num" + rolling21).css("opacity",1);
+        $(".dice#dice2").attr("data-num",rolling22).find(".dice-dot.num" + rolling22).css("opacity",1);
+ }, 1200);
+    setTimeout(function(){  
+        $(".dice#dice1").attr("data-num",rolling21).find(".dice-dot.num" + rolling21).css("opacity",0);
+        $(".dice#dice2").attr("data-num",rolling22).find(".dice-dot.num" + rolling22).css("opacity",0);
+ }, 1400);
 }
 
-
 Monopoly.rollDice = function(){
-    // var result1 = Math.floor(Math.random() * 6) + 1 ;
-    // var result2 = Math.floor(Math.random() * 6) + 1 ;
-    var result1 = 4;
-    var result2 = 4;
+    var result1 = Math.floor(Math.random() * 6) + 1 ;
+    var result2 = Math.floor(Math.random() * 6) + 1 ;
     $(".dice").find(".dice-dot").css("opacity",0);
-    $(".dice#dice1").attr("data-num",result1).find(".dice-dot.num" + result1).css("opacity",1);
-    $(".dice#dice2").attr("data-num",result2).find(".dice-dot.num" + result2).css("opacity",1);
-    if (Monopoly.doubleCounter == 3) {
+    Monopoly.diceRollingAnim();
+
+    setTimeout(function(){   
+        $(".dice#dice1").attr("data-num",result1).find(".dice-dot.num" + result1).css("opacity",1);
+        $(".dice#dice2").attr("data-num",result2).find(".dice-dot.num" + result2).css("opacity",1);
+
+ }, 1500);
+
+    setTimeout(function(){     
+    
+    if (result1 == result2){
+        Monopoly.doubleCounter++;
+        console.log(Monopoly.doubleCounter);
+        if (Monopoly.doubleCounter == 3) {
             Monopoly.handleGoToJail(Monopoly.getCurrentPlayer());
             Monopoly.doubleCounter = 0;
             return;
-        }
-    if (result1 == result2){
-        Monopoly.doubleCounter++;
+        };
      } else if ( result1 !== result2) {
          Monopoly.doubleCounter = 0;
      }
@@ -87,6 +129,8 @@ Monopoly.rollDice = function(){
 
     var currentPlayer = Monopoly.getCurrentPlayer();
     Monopoly.handleAction(currentPlayer,"move",result1 + result2);
+
+}, 1501);
 
 };
 
@@ -297,6 +341,7 @@ Monopoly.handleBuy = function(player,propertyCell,propertyCost){
                     .addClass(player.attr("id"))
                     .attr("data-owner",player.attr("id"))
                     .attr("data-rent",rent);
+                    Monopoly.closePopup();
         Monopoly.setNextPlayerTurn();
     }
 };
@@ -359,13 +404,11 @@ Monopoly.isValidInput = function(validate,value){
     var isValid = false;
     switch(validate){
         case "numofplayers":
-            if(value > 1 && value <= 4){
+            if(value > 1 && value <= 6){
                 isValid = true;
             } else { 
                 isValid = false;
             }
-            //TODO: remove when done
-
     }
 
     if (!isValid){
@@ -403,6 +446,10 @@ Monopoly.showPopup = function(popupId){
     $(".popup-lightbox .popup-page").hide();
     $(".popup-lightbox .popup-page#" + popupId).show();
     $(".popup-lightbox").fadeIn();
+};
+
+Monopoly.theEnd = function(){
+
 };
 
 Monopoly.init();

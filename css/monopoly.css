@@ -199,9 +199,17 @@ body{
     background-color: #d061cd;
 }
 
+.player#player5 , .player5.cell .content{
+    background-color: #ffc107;
+}
+
+.player#player6 , .player6.cell .content{
+    background-color: #000000;
+}
 
 
-.property.player1 .content #player1, .property.player2 .content #player2, .property.player3 .content #player3, .property.player4 .content #player4 {
+
+.property.player1 .content #player1, .property.player2 .content #player2, .property.player3 .content #player3, .property.player4 .content #player4, .property.player5 .content #player5, .property.player6shadowedshadowedshadowed .content #player6 {
     background-image: url(../images/ownProperty.jpg);
     background-size:contain;
     background-position:center;
@@ -224,7 +232,6 @@ body{
     margin: 4%;
     background-color: green;
     border-radius: 100px;
-    opacity:0;
 }
 
 .dice-dot.right{

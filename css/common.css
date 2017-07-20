@@ -4,13 +4,14 @@ body{
 }
 
 .clickable{
-	cursor:pointer;
+    cursor:pointer;
 }
 
 .shadowed{
  -webkit-box-shadow: 3px 3px 23px 0px rgba(50, 50, 50, 0.75);
-	-moz-box-shadow:    3px 3px 23px 0px rgba(50, 50, 50, 0.75);
-		 box-shadow:         3px 3px 23px 0px rgba(50, 50, 50, 0.75);	
+ -moz-box-shadow:    3px 3px 23px 0px rgba(50, 50, 50, 0.75);
+ box-shadow: 5px 4px 23px 0px rgba(50, 50, 50, 0.75);
+ overflow: scroll;
 }
 
 .middle-center{
