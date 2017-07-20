@@ -243,3 +243,7 @@ body{
     background-image: url('../images/jailled.png');
     background-size: 108%;
 }
+
+.dead {
+    opacity: 0.3
+}
