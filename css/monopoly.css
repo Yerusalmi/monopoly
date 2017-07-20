@@ -199,6 +199,14 @@ body{
     background-color: #d061cd;
 }
 
+
+
+.property.player1 .content #player1, .property.player2 .content #player2, .property.player3 .content #player3, .property.player4 .content #player4 {
+    background-image: url(../images/ownProperty.jpg);
+    background-size:contain;
+    background-position:center;
+}
+
 .player.current-turn{
     background-image:url(../images/crown.png);
     background-size:contain;
@@ -214,11 +222,16 @@ body{
     width: 25%;
     height: 25%;
     margin: 4%;
-    background-color: black;
+    background-color: green;
     border-radius: 100px;
     opacity:0;
 }
 
 .dice-dot.right{
     margin-left:36%;
+}
+
+.player.jailed {
+    background-image: url('../images/jailled.png');
+    background-size: 108%;
 }
