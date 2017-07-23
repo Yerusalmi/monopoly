@@ -247,3 +247,12 @@ body{
 .dead {
     opacity: 0.3
 }
+
+.scoreboard {
+    position: absolute;
+    width: 100%;
+    text-align: center;
+    top: 20%;
+
+
+}

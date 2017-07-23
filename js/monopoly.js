@@ -52,7 +52,14 @@ Monopoly.updatePlayersMoney = function(player,amount){
         alert("you are broke!")
         Monopoly.brokePerson();
     }
+
+    var newId = player.attr("id");
     player.attr("data-money",playersMoney);
+    var parsed = parseInt(newId.replace("player",""));
+    console.log($('.scoreboard #score'+parsed+' .theScore').text())
+    $('.scoreboard #score'+parsed+' .theScore').text(playersMoney);
+
+
     player.attr("title",player.attr("id") + ": $" + playersMoney);
     Monopoly.playSound("chaching");
 };
@@ -375,6 +382,12 @@ Monopoly.createPlayers = function(numOfPlayers){
     for (var i=1; i<= numOfPlayers; i++){
         var player = $("<div />").addClass("player shadowed").attr("id","player" + i).attr("title","player" + i + ": $" + Monopoly.moneyAtStart);
         startCell.find(".content").append(player);
+
+        $('.scoreboard .theScore').text(Monopoly.moneyAtStart);
+
+        $('.scoreboard #score'+i).show();
+
+
         if (i==1){
             player.addClass("current-turn");
         }
